@@ -35,7 +35,7 @@
         <div class="hero-copy">
           <p class="eyebrow">为 AI 编码而生的 macOS 终端</p>
           <h1>Kaku</h1>
-          <p class="hero-sub">一个快速、克制、开箱即用的 macOS 终端，把 WezTerm 的可靠底座和 AI 编码工作流放在一起。</p>
+          <p class="hero-sub">AI 编码时代的 macOS 终端，基于 WezTerm，开箱即用。</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://github.com/tw93/Kaku/releases/latest" target="_blank" rel="noopener noreferrer">下载 Kaku</a>
             <button class="btn btn-secondary copy-command" type="button" data-copy="brew install tw93/tap/kakuku"><code>brew install tw93/tap/kakuku</code><span class="copy-hint" data-copy-hint>复制</span></button>
@@ -55,16 +55,16 @@
     </section>
     <section class="intro-strip">
       <div class="wide">
-        <p>Kaku 不打扰你写命令，但在 <code>Cmd + L</code> AI Chat、<code>#</code> 自然语言命令、失败命令修复、Lazygit、Yazi 和 WezTerm Lua 配置这些关键时刻，把工作流接住。</p>
+        <p>AI Chat、命令修复、Shell 工具和 Lua 配置，放回一个安静的终端。</p>
         <a href="/docs/">查看文档</a>
       </div>
     </section>
     <section class="section">
       <div class="wide terminal-demo">
         <div class="prose">
-          <span class="label">Error recovery</span>
+          <span class="label">命令修复</span>
           <h2>失败的命令，不再只是一行红字。</h2>
-          <p>Kaku 会把失败命令、退出码、当前目录和 git 分支交给 Assistant 生成修复建议。按 <code>Cmd + Shift + E</code> 才会把建议送回命令行，危险命令永远需要你审查。</p>
+          <p>失败后给出可审查建议。按 <code>Cmd + Shift + E</code> 放回命令行，危险命令不会自动执行。</p>
           <p><a href="/docs/features">了解 AI 功能</a></p>
         </div>
         <div class="terminal-window">
@@ -82,15 +82,15 @@
       <div class="wide">
         <div class="section-head">
           <h2>默认值已经替你做过选择。</h2>
-          <p>不是另一个需要你花一整晚配置的终端。Kaku 把字体、配色、Shell 工具、AI 入口和 WezTerm 兼容性整理成一套可直接工作的默认体验。</p>
+          <p>字体、配色、Shell 工具、AI 入口和 WezTerm 配置已经整理好。</p>
         </div>
         <div class="feature-grid">
-          <a class="feature" href="/docs/features"><span class="mark">01</span><strong>AI Chat</strong><span><code>Cmd + L</code> 打开内建面板，支持 Markdown 流式输出、终端上下文、工具调用和 Simple/Deep 模型切换。</span></a>
-          <a class="feature" href="/docs/features"><span class="mark">02</span><strong>命令修复</strong><span>失败后给出可审查建议，使用退出码、cwd 和 git 分支判断上下文，危险命令不会自动执行。</span></a>
-          <a class="feature" href="/docs/features"><span class="mark">03</span><strong>自然语言命令</strong><span>在提示符前输入 <code>#</code> 加一句话，Kaku 生成命令并放回输入区，执行权仍在你手里。</span></a>
-          <a class="feature" href="/docs/features"><span class="mark">04</span><strong>Shell 套件</strong><span>Lazygit、Yazi、Remote Files、z、补全、高亮和 autosuggestions 围绕日常开发组织。</span></a>
-          <a class="feature" href="/docs/configuration"><span class="mark">05</span><strong>WezTerm 配置</strong><span>从内置默认值加载，再叠加 <code>~/.config/kaku/kaku.lua</code>，保留 Lua 配置能力。</span></a>
-          <a class="feature" href="/docs/configuration"><span class="mark">06</span><strong>macOS 工作流</strong><span>窗口快照、工作目录继承、选区滚轮、左右 Option 行为和原生通知都有明确默认值。</span></a>
+          <a class="feature" href="/docs/features"><span class="mark">01</span><strong>AI Chat</strong><span><code>Cmd + L</code> 打开，带上下文、工具和 Simple/Deep 模型。</span></a>
+          <a class="feature" href="/docs/features"><span class="mark">02</span><strong>命令修复</strong><span>读取退出码、cwd 和 git 分支，建议只回到输入区。</span></a>
+          <a class="feature" href="/docs/features"><span class="mark">03</span><strong>自然语言命令</strong><span><code>#</code> 加一句话生成命令，执行前仍由你确认。</span></a>
+          <a class="feature" href="/docs/features"><span class="mark">04</span><strong>Shell 套件</strong><span>Lazygit、Yazi、Remote Files、z、补全和高亮。</span></a>
+          <a class="feature" href="/docs/configuration"><span class="mark">05</span><strong>WezTerm 配置</strong><span>内置默认值，再叠加 <code>~/.config/kaku/kaku.lua</code>。</span></a>
+          <a class="feature" href="/docs/configuration"><span class="mark">06</span><strong>macOS 工作流</strong><span>窗口快照、目录继承、选区滚轮、Option 键和通知。</span></a>
         </div>
       </div>
     </section>
@@ -105,9 +105,9 @@
           </div>
         </div>
         <div class="prose">
-          <span class="label">Natural language to command</span>
+          <span class="label">自然语言命令</span>
           <h2>让终端理解一句人话，但不要替你偷偷执行。</h2>
-          <p>在提示符前输入 <code>#</code> 加自然语言，Kaku 调用你配置的 LLM，把生成命令注入回提示符。它负责起草，你负责确认。</p>
+          <p>输入 <code>#</code> 加一句话，Kaku 把生成命令放回提示符。它起草，你确认。</p>
           <p><a href="/docs/features">查看 Provider 和快捷键</a></p>
         </div>
       </div>
@@ -116,7 +116,7 @@
       <div class="wide">
         <div class="section-head">
           <h2>真正会每天用到的入口。</h2>
-          <p>官网不堆概念，把 Kaku 代码和文档里已经存在的核心工作流直接放出来。</p>
+          <p>只保留每天会碰到的入口。</p>
         </div>
         <div class="workflow-list">
           <article class="workflow-item"><span class="mark">01</span><h2>聊天</h2><p><code>Cmd + L</code> 打开内建 AI Chat；shell 里用 <code>k</code> 或 <code>kaku chat</code> 继续同一套对话和记忆。</p></article>
@@ -139,7 +139,7 @@
     </section>
     <section class="section-tight">
       <div class="container prose">
-        <span class="label">Why Kaku</span>
+        <span class="label">为什么是 Kaku</span>
         <h2>一个终端，应该先让你进入工作。</h2>
         <p>我重度依赖终端工作，此前做过 Pake、Mole 和 Kami。Kaku 是我对“AI 编码时代的终端”的答案：保留 WezTerm 的可靠性，把默认值、Shell 工具和 AI 助手整理成一个不吵的 macOS 应用。</p>
         <p>Tw93 · <a href="https://twitter.com/HiTw93" target="_blank" rel="noopener noreferrer">@HiTw93</a></p>
@@ -148,7 +148,7 @@
     <section class="section-tight">
       <div class="container">
         <div class="prose">
-          <span class="label">Quick start</span>
+          <span class="label">快速开始</span>
           <h2>三步开跑。</h2>
         </div>
         <pre class="code-box">brew install tw93/tap/kakuku
@@ -161,7 +161,7 @@ kaku doctor
     <section class="section">
       <div class="container">
         <div class="prose">
-          <span class="label">FAQ</span>
+          <span class="label">常见问题</span>
           <h2>常见问题</h2>
         </div>
         <div class="faq-list">
@@ -176,7 +176,7 @@ kaku doctor
   </main>
   <footer class="site-footer">
     <div class="wide">
-      <div class="footer-brand"><a href="/">Kaku</a><p>一个为 AI 编码打磨的 macOS 终端，基于 WezTerm，默认就进入工作状态。</p></div>
+      <div class="footer-brand"><a href="/">Kaku</a><p>AI 编码时代的 macOS 终端。</p></div>
       <div class="footer-cols">
         <div class="footer-col"><h2>产品</h2><a href="/roadmap">Roadmap</a><a href="/changelog">Changelog</a><a href="https://github.com/tw93/Kaku/releases" target="_blank" rel="noopener noreferrer">Releases</a></div>
         <div class="footer-col"><h2>文档</h2><a href="/docs/install">安装</a><a href="/docs/features">AI 功能</a><a href="/docs/configuration">配置</a></div>
