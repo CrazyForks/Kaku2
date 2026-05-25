@@ -125,6 +125,16 @@ button, input { font: inherit; }
   line-height: 1.7;
   text-wrap: pretty;
 }
+.section-num {
+  display: block;
+  font-family: var(--ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 6px;
+}
 .btn {
   min-height: 44px;
   display: inline-flex;
@@ -189,6 +199,20 @@ button, input { font: inherit; }
   letter-spacing: 0;
   color: var(--brand);
 }
+.eyebrow-sep {
+  color: var(--ink-muted);
+  margin: 0 2px 0 6px;
+  font-weight: 400;
+}
+.version-link {
+  font-family: var(--ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+.version-link:hover { color: var(--brand); }
 .nav-links { display: flex; gap: 18px; flex: 1; }
 .nav-links a {
   color: var(--ink-muted);
@@ -1010,14 +1034,26 @@ button, input { font: inherit; }
   transition: opacity 160ms var(--ease);
 }
 .footer-thanks .contrib-img:hover img { opacity: 1; }
-.footer-bottom {
-  margin-top: 34px;
+.footer-ethos {
+  margin-top: 30px;
   padding-top: 18px;
   border-top: 1px solid var(--line-soft);
+  font-family: var(--serif);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-muted);
+  text-align: right;
+  letter-spacing: 0.1px;
+}
+.footer-bottom {
+  margin-top: 10px;
+  padding-top: 0;
+  border-top: none;
   color: var(--ink-muted);
   font-family: var(--ui);
   font-size: 12px;
   letter-spacing: 0.2px;
+  text-align: right;
 }
 
 @media (hover: hover) {
