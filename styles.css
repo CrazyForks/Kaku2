@@ -96,9 +96,9 @@ button, input { font: inherit; }
 .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
 .wide { max-width: 1280px; margin: 0 auto; padding: 0 64px; }
 .hero-wrap { max-width: 1280px; margin: 0 auto; padding: 0 64px; }
-.section { padding: 0; margin-bottom: 96px; }
-.section-tight { padding: 0; margin-bottom: 72px; }
-.hero + .section { padding-top: 64px; }
+.section { padding: 0; margin-bottom: 72px; }
+.section-tight { padding: 0; margin-bottom: 54px; }
+.hero + .section { padding-top: 48px; }
 .label {
   color: var(--ink-muted);
   font-family: var(--ui);
@@ -1067,8 +1067,8 @@ button, input { font: inherit; }
   .quick-grid, .method-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .workflow-item, .feature { grid-template-columns: 48px minmax(0, 1fr); gap: 10px 18px; }
   .workflow-item p, .feature span:last-child { grid-column: 2; }
-  .section { margin-bottom: 72px; }
-  .section-tight { margin-bottom: 56px; }
+  .section { margin-bottom: 54px; }
+  .section-tight { margin-bottom: 42px; }
   .hero { min-height: auto; padding: 40px 0 44px; }
   .hero h1 .cn { margin-left: 12px; }
   .hero-sub { font-size: 18px; }
@@ -1082,12 +1082,12 @@ button, input { font: inherit; }
   .site-nav .nav-inner { padding: 0 16px; gap: 8px 12px; flex-wrap: wrap; }
   .nav-links { gap: 12px; }
   .brand strong { font-size: 13px; }
-  .section { margin-bottom: 56px; }
-  .section-tight { margin-bottom: 44px; }
+  .section { margin-bottom: 42px; }
+  .section-tight { margin-bottom: 33px; }
   .hero { padding: 32px 0 40px; }
   .hero h1 { font-size: 56px; }
-  .hero-actions { flex-wrap: nowrap; gap: 12px; justify-content: flex-start; }
-  .btn { flex: 0 1 160px; min-width: 0; padding: 12px 16px; font-size: 14px; }
+  .hero-actions { flex-wrap: nowrap; gap: 12px; }
+  .btn { flex: 1; min-width: 0; min-height: 40px; padding: 10px 16px; font-size: 14px; }
   .feature-grid, .quick-grid, .method-grid, .doc-grid, .doc-pager, .gallery { grid-template-columns: 1fr; }
   .docs-sidebar { gap: 12px; }
   .docs-menu {
