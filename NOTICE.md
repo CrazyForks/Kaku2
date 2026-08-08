@@ -13,14 +13,17 @@ WezTerm code and Kaku's changes.
 
 ## Bundled fonts
 
-`assets/fonts` ships these typefaces, each under the SIL Open Font License 1.1:
+`assets/fonts` ships these typefaces, each with the licence text its upstream
+project distributes:
 
 - **JetBrains Mono** (Regular, Medium, SemiBold), from
-  [JetBrains/JetBrainsMono](https://github.com/JetBrains/JetBrainsMono)
-- **Symbols Nerd Font Mono**, built from
-  [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts) using only
-  icon sets clearly distributed under OFL 1.1, excluding Pomicons
-
-The OFL 1.1 text is not currently checked into this repository; it is available
-from each project linked above and at
-[openfontlicense.org](https://openfontlicense.org).
+  [JetBrains/JetBrainsMono](https://github.com/JetBrains/JetBrainsMono).
+  SIL Open Font License 1.1, full text in
+  [`assets/fonts/JetBrainsMono-OFL.txt`](assets/fonts/JetBrainsMono-OFL.txt).
+- **Symbols Nerd Font Mono**, from
+  [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts).
+  That project licenses its patched fonts under OFL 1.1 and its own source
+  files under MIT, and the folder shipping this font carries the MIT text. Its
+  combined licensing document is reproduced whole in
+  [`assets/fonts/SymbolsNerdFont-LICENSE.txt`](assets/fonts/SymbolsNerdFont-LICENSE.txt)
+  rather than excerpted, so the terms are not narrowed by this repository.
