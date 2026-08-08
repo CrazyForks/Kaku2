@@ -138,4 +138,5 @@ Big thanks to all contributors who helped build Kaku. Go follow them! ❤️
 
 ## License
 
-MIT License, feel free to enjoy and participate in open source.
+MIT License, feel free to enjoy and participate in open source. Attribution for
+WezTerm and the bundled fonts is in [NOTICE.md](NOTICE.md).
