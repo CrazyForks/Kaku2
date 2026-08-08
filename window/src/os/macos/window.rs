@@ -863,15 +863,22 @@ fn rects_overlap_horizontally(a: NSRect, b: NSRect) -> bool {
 /// the part of the title bar over the first display rose past its menu bar into
 /// space the cursor cannot reach.
 ///
-/// Displays sitting underneath a taller neighbour are excluded first. Those are
-/// displays the title bar has legitimately risen past on its way into a display
-/// stacked above; keeping them would pin a window to the lower monitor forever
-/// and undo #508's vertical-crossing fix.
+/// A display stops bounding the title bar once the title bar has risen clear of
+/// that display's frame into a display stacked above it, so a window crossing
+/// upward is not pinned to the monitor it is leaving (#508). The clearance test
+/// matters: excluding a display merely because a taller neighbour exists spans
+/// the whole arrangement horizontally when the displays are stacked, which
+/// silently disables the menu bar clamp for every window sitting on the lower
+/// display and lets its title bar rest behind the menu bar, unreachable.
+///
+/// The tallest spanned display has no taller neighbour, so at least one display
+/// always survives the filter.
 fn select_visible_frame_for_target(
     target: NSRect,
     screens: &[ScreenGeometry],
     current: Option<NSRect>,
 ) -> Option<NSRect> {
+    let target_top = rect_top(target);
     let spanned: Vec<&ScreenGeometry> = screens
         .iter()
         .filter(|screen| rects_overlap_horizontally(target, screen.frame))
@@ -880,10 +887,12 @@ fn select_visible_frame_for_target(
     spanned
         .iter()
         .filter(|screen| {
-            !spanned.iter().any(|other| {
+            let cleared = target_top > rect_top(screen.frame);
+            let stacked_under_taller = spanned.iter().any(|other| {
                 rect_top(other.frame) > rect_top(screen.frame)
                     && rects_overlap_horizontally(other.frame, screen.frame)
-            })
+            });
+            !(cleared && stacked_under_taller)
         })
         .map(|screen| screen.visible_frame)
         .min_by(|left, right| rect_top(*left).total_cmp(&rect_top(*right)))
@@ -3690,6 +3699,54 @@ mod tests {
         let selected =
             select_visible_frame_for_target(target, &screens, Some(left_visible)).unwrap();
         assert!(nsrect_approx_eq(selected, left_visible, 0.0));
+    }
+
+    /// Built-in laptop below carrying the menu bar, taller external stacked
+    /// above it.
+    fn stacked_screens() -> ([ScreenGeometry; 2], NSRect, NSRect) {
+        let builtin_visible = NSRect::new(NSPoint::new(0., 0.), NSSize::new(1512., 957.));
+        let external_visible = NSRect::new(NSPoint::new(0., 982.), NSSize::new(2560., 1440.));
+        (
+            [
+                ScreenGeometry {
+                    frame: NSRect::new(NSPoint::new(0., 0.), NSSize::new(1512., 982.)),
+                    visible_frame: builtin_visible,
+                },
+                ScreenGeometry {
+                    frame: NSRect::new(NSPoint::new(0., 982.), NSSize::new(2560., 1440.)),
+                    visible_frame: external_visible,
+                },
+            ],
+            builtin_visible,
+            external_visible,
+        )
+    }
+
+    #[test]
+    fn lower_display_menu_bar_clamps_until_the_title_bar_clears_it() {
+        let (screens, builtin_visible, _external_visible) = stacked_screens();
+        // Wholly inside the built-in display, dragged up so the title bar would
+        // enter the menu bar strip (957..982). Excluding the built-in display
+        // just because a taller one is stacked above dropped the clamp here and
+        // left the title bar behind the menu bar with no way to grab it back.
+        let target = NSRect::new(NSPoint::new(200., 500.), NSSize::new(800., 460.));
+
+        let selected = select_visible_frame_for_target(target, &screens, None).unwrap();
+        assert!(nsrect_approx_eq(selected, builtin_visible, 0.0));
+        assert_eq!(clamp_frame_top_below_menu_bar(target, selected), Some(497.));
+    }
+
+    #[test]
+    fn stacked_crossing_frees_the_window_once_the_title_bar_clears_the_lower_frame() {
+        let (screens, _builtin_visible, external_visible) = stacked_screens();
+        // Same drag continued: the title bar is now above the built-in
+        // display's frame entirely, so the crossing must not be pinned back
+        // down to its menu bar (#508).
+        let target = NSRect::new(NSPoint::new(200., 523.), NSSize::new(800., 460.));
+
+        let selected = select_visible_frame_for_target(target, &screens, None).unwrap();
+        assert!(nsrect_approx_eq(selected, external_visible, 0.0));
+        assert_eq!(clamp_frame_top_below_menu_bar(target, selected), None);
     }
 
     #[test]
